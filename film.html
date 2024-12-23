@@ -1,0 +1,546 @@
+# kastari-ui.github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard with Hamburger Menu</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: lightgreen;
+        }
+        .
+
+        
+        .container {
+            max-width: 1300px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap:30px;
+        }
+        .movie {
+            width: 150px;
+            height:220px;
+            border: 1px solid violet;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: darkred;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .movie img {
+            width: 100%;
+            height:120px;
+            object-fit: cover;
+        }
+        .movie-details {
+            padding: 2px;
+            text-align: center;
+        }
+        .movie-details h3 {
+            color:lightgreen;
+            margin: 2px 0;
+            font-size: 14px;
+        }
+        .movie-details p {
+            font-size: 10px;
+            color: Lightyellow;
+        }
+    
+
+    /* Style untuk menu bar */
+  .menu-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #333;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      color: white;
+    }
+
+    /* Style untuk ikon hamburger */
+.menu-icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+.menu-icon div {
+      width: 100%;
+      height: 4px;
+      background-color: white;
+    }
+
+    /* Style untuk menu dropdown */
+.menu-dropdown {
+      position: relative;
+      top: 50px;
+      left: 0;
+      background-color: #333;
+      width: 200px;
+      
+      display: none;
+      flex-direction:column;
+    }
+
+.menu-dropdown a {
+      color: white;
+      padding: 5px;
+      text-decoration: none;
+      display: block;
+    }
+
+.menu-dropdown a:hover {
+      background-color: #555;
+    }
+    
+     .slideshow-container {
+       width: 110%;
+       overflow:hidden ;
+       position: relative;
+       }
+
+      .slider {
+        display: flex;
+        transition: transform 1.6s ease-in-out;
+         }
+
+      .slide {
+       margin:2px;
+       min-width: 50%;
+       box-sizing: border-box;
+       }
+
+       .card {
+         box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+         padding: 2px;
+         border:2px solid darkviolet;
+         background-color: red;
+         color: white;
+         text-align: center;
+         border-radius: 10px;
+         font-size: 24px;
+         height:225px;
+         width:140px;
+        }
+        
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .movis-list {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .movis {
+            width: 120px;
+            height:300px;
+            margin: 10px;
+            flex-shrink: 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: red;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+        }
+        .movis img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .movis-details {
+            padding: 2px;
+            text-align: center;
+        }
+        .movis-details h3 {
+            margin: 2px 0;
+            font-size: 13px;
+        }
+        .movis-details p {
+            font-size: 12px;
+            color: #666;
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-control {
+            background-color: rgba(0, 0, 0, 1);
+            color: white;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+        }
+  </style>
+</head>
+<body>
+
+  <!-- Menu bar dengan hamburger icon -->
+  <div class="menu-bar">
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- Menu dropdown -->
+  <div class="menu-dropdown" id="menu">
+    <a href="#">Dashboard</a>
+    <a href="#">Profile</a>
+    <a href="#">Settings</a>
+    <a href="#">Logout</a>
+  </div>
+  
+  <br><br><br><br><br>
+    
+     <div class="slideshow-container">
+      <div class="slider">
+      <div class="slide">
+        <a href="http://www.kastaribezo.blogspot.com">
+          <div class="card"><img src="https://cdn1-production-images-kly.akamaized.net/Rz0KIDE4ZiqWmNrKSmUItYGQj5Y=/800x1066/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/3649559/original/051058300_1638349224-sing_two.jpg" width="140px" height="160px">Card 1</div></a>
+      </div>
+      <div class="slide">
+        <div class="card"><img src="https://www.whiteboardjournal.com/wp-content/uploads/2023/04/Carl27s_Date_poster-1.jpg" width="140px" height="160px">Card 2</div>
+      </div>
+      <div class="slide">
+        <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD3XnOnecYrEhgNxuXwvfiUgsZGJ8mLRa5QTB42feeP5T3h7xGRUxuGhBL&s=10" width="140px" height="160px">Card 3</div>
+      </div>
+      <div class="slide">
+        <div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxL0_xGFn-OigdzyRtbwJLo499ZoucuSHFkWOYDrIYPO7iDmtv1H9ck6h5&s=10" width="140px" height="160px">Card 4</div>
+      </div>
+      <div class="slide">
+        <div class="card"><a href="#"><h3>More==>><br>Click Here</h3></a></div>
+      </div>
+    </div>
+ </div>
+  
+
+  
+
+    
+<div class="container">
+        <h1>Film Collection Slider</h1>
+        <div class="carousel">
+            <div class="movis-list" id="movis-list"></div>
+            <div class="carousel-controls">
+                <button class="carousel-control" id="prev-btn">‹</button>
+                <button class="carousel-control" id="next-btn">›</button>
+            </div>
+        </div>
+    </div>
+  
+  <script>
+    
+    let slideIndex = 0;
+const slides = document.querySelectorAll(".slide");
+const totalSlides = slides.length;
+
+function showSlides() {
+  slideIndex++;
+  if (slideIndex >= totalSlides) {
+    slideIndex = 0;
+  }
+  const slider = document.querySelector(".slider");
+  slider.style.transform = `translateX(-${slideIndex * 43}%)`;
+}
+
+setInterval(showSlides, 1500);
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+      }
+    }
+      // Daftar film
+const movies = [
+    {
+        title: "Shaun the sheep Season 2 :Winter Windmint Invention Goes Wrong",
+        description: "Stop motion, Comedy, Slice of life, Slapstick",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnm6gx2me35JctDSg6U5jJDMFSXieqRiMGKQ&s",
+        rating: 8.8,
+        link:"https://kastaribezo.blogspot.com/2024/09/shaun-sheep-season-2-winter-windmint.html?m=1#"
+    },
+    {
+        title: "Shaun A Celebrates A Snowy Chritmas Shaun The Sheeps Season 2",
+        description: "Stop motion, Comedy, Slice of life, Slapstick",
+        poster: " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtBs9GZGXAOyLI15r7HN6sOrGZsSj-wLG-9h7LNpjL-dInxjaNTeExlxY&s=10",
+        rating: 8.6,
+        link:"https://kastaribezo.blogspot.com/2024/09/shaun-celebrates-snowy-chritmas-shaun.html?m=1"
+    },
+    {
+        title: "Timmys New Magnetic Friend Shaun The Sheep Season 2 Full Episode",
+        description: "Stop motion, Comedy, Slice of life, Slapstick",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyQyHktvz9flkqfX6P34yWZd9mL-Yi2A0rWaF7FbLjA_-Wy_yuk620AYA&s=10",
+        rating: 9.0,
+        link:"https://kastaribezo.blogspot.com/2024/09/timmys-new-magnetic-friend-shaun-sheep.html?m=1"
+    },
+    {
+      title:"More Film-> ==>>> click here <<==",
+      description:"Animation,Spongebop,Shaun the sheep",
+      poster:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ32i88SusKPIpw4H74AMVOtCSDCEj481IjOg&usqp=CAU",
+      rating:"-",
+      link:"https://kastaribezo.blogspot.com"
+    }
+];
+
+// Fungsi untuk menampilkan daftar film
+function displayMovies() {
+    const movieList = document.getElementById('movie-list');
+    movies.forEach(movie => {
+        // Membuat elemen film
+        const movieElement = document.createElement('div');
+        movieElement.classList.add('movie');
+
+        // Konten film
+        movieElement.innerHTML = `<a href="${movie.link}">
+            <img src="${movie.poster}" alt="${movie.title}">
+            <div class="movie-details">
+                <h3>${movie.title}</h3>
+                <p>${movie.description}</p>
+                <p><strong>Rating:</strong> ${movie.rating}/10</p>
+            </div>
+            </a>
+        `;
+
+        // Menambahkan elemen ke daftar film
+        movieList.appendChild(movieElement);
+    });
+}
+
+// Panggil fungsi untuk menampilkan film ketika halaman dimuat
+window.onload = displayMovies;
+
+  // Daftar film
+const movis = [
+    {
+        link:"#",
+        title: "Deadpool 2",
+        description: "Action,USA,Fantasy",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmrYfJK8bha6kzZLOpE6OfGZKhlq8SJggf-xEeBxbsp7iXTLvNezHt3vUf&s=10",
+        rating: "Rating : 9/10"
+    },
+    {
+        link: "#",
+        title: "Avenger Endgame",
+        description: "Action,USA,Marvel,Hero",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_XB-D8sL9KHIz-5gjeGPcu-Wf-ZJJR-D3xPMNUj_abz79VgWf4s9slVam&s=10",
+        rating: "Rating : 9/10"
+    },
+    {
+        link:"#",
+        title: "Civil War",
+        description: "Action,fantacy,Sci-fi,USA",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYOVID35qIMqxWNLD6WLrBpxpzULU-KZyV5x5BggQxPdvJ6PB03s5qcWTn&s=10",
+        rating: "Rating :9/10"
+    },
+    {
+        link:"#",
+        title: "Tenet",
+        description: "A secret agent embarks on a dangerous time-bending mission.",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6Eu9Q71DhKfJukFauk-s6fmIPPdLsTPPavojmP310bsDVh2maWKU8YW8&s=10",
+        rating: "Rating : 7.5"
+    },
+    {
+        link:"#",
+        title: "Dunkirk",
+        description: "Allied soldiers are surrounded by the German Army and evacuated during World War II.",
+        poster: "https://upload.wikimedia.org/wikipedia/en/1/15/Dunkirk_Film_poster.jpg",
+        rating:"Rating : 8.0"
+    }
+];
+
+// Fungsi untuk menampilkan daftar film
+function displayMovis() {
+    const movieList = document.getElementById('movis-list');
+    movis.forEach(movis => {
+        const movieElement = document.createElement('div');
+        movieElement.classList.add('movis');
+
+        movieElement.innerHTML = `<a href="${movis.link}">
+            <img src="${movis.poster}" width="130px" height="197px" alt="${movis.title}">
+            <div class="movis-details">
+                <h3>${movis.title}</h3>
+                <p>${movis.description}</p>
+                <p><strong></strong> ${movis.rating}/10</p>
+            </div></a>
+        `;
+
+        movieList.appendChild(movieElement);
+    });
+}
+
+// Fungsi untuk menggerakkan slider
+let currentIndex = 0;
+const moviesPerPage = 3; // Jumlah film yang ditampilkan dalam satu halaman
+const movieListElement = document.getElementById('movis-list');
+
+function moveSlider(direction) {
+    const movieWidth = 220; // Lebar elemen film termasuk margin
+    const maxIndex = movis.length - moviesPerPage;
+    if (direction === 'next') {
+        if (currentIndex < maxIndex) {
+            currentIndex++;
+        }
+    } else if (direction === 'prev') {
+        if (currentIndex > 0) {
+            currentIndex--;
+        }
+    }
+    const offset = -currentIndex * movieWidth;
+    movieListElement.style.transform = `translateX(${offset}px)`;
+}
+
+// Event listener untuk tombol kontrol slider
+document.getElementById('next-btn').addEventListener('click', () => moveSlider('next'));
+document.getElementById('prev-btn').addEventListener('click', () => moveSlider('prev'));
+
+// Panggil fungsi untuk menampilkan film ketika halaman dimuat
+window.onload = displayMovis;
+  </script>
+<div class="container">
+        <h1>Film Collection</h1>
+        <div class="movie-list" id="movie-list"></div>
+ </div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: lightgreen;
+        }
+        .container {
+            max-width: 1300px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap:30px;
+        }
+        .movie {
+            width: 150px;
+            height:220px;
+            border: 1px solid violet;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: darkred;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .movie img {
+            width: 100%;
+            height:120px;
+            object-fit: cover;
+        }
+        .movie-details {
+            padding: 2px;
+            text-align: center;
+        }
+        .movie-details h3 {
+            color:lightgreen;
+            margin: 2px 0;
+            font-size: 14px;
+        }
+        .movie-details p {
+            font-size: 10px;
+            color: Lightyellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Film Collection</h1>
+        <div class="movie-list" id="movie-list"></div>
+    </div>
+
+    <script>
+      // Daftar film
+const movie = [
+    {
+        title: "Inception",
+        description: "A skilled thief leads a team into the subconscious to steal secrets.",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ-CnOZcPaGuRvTarQiHlNVDGEZIO4RGqkY6qAW3n-M1eba3z6jh49WKew&s=10",
+        rating: 8.8,
+        link:"https://youtu.be/tEJ6GM0PhuU?si=lzFeOqu8wf4D6Z_i"
+    },
+    {
+        title: "Interstellar",
+        description: "A group of explorers travel through a wormhole in space.",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSS9maE7-yWPpULS8xay8yVKGnVZctnXkOXMg&s",
+        rating: 8.6,
+        link:"https://youtu.be/x3jSPGsLc0Y?si=pM78p46dyxqMZv0f"
+    },
+    {
+        title: "The Dark Knight",
+        description: "Batman sets out to dismantle the remaining criminal organizations.",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkC6a1QhtF0YZY2kyxmY00YBnVqPLjYgfqyA&usqp=CAU",
+        rating: 9.0,
+        link:"https://youtu.be/dUMUH4NNYDY?si=j6szpSQ3i-_MkhrD"
+    }
+];
+
+// Fungsi untuk menampilkan daftar film
+function displayMovies() {
+    const movieList = document.getElementById('movie-list');
+    movies.forEach(movie => {
+        // Membuat elemen film
+        const movieElement = document.createElement('div');
+        movieElement.classList.add('movie');
+
+        // Konten film
+        movieElement.innerHTML = `<a href="${movie.link}">
+            <img src="${movie.poster}" alt="${movie.title}">
+            <div class="movie-details">
+                <h3>${movie.title}</h3>
+                <p>${movie.description}</p>
+                <p><strong>Rating:</strong> ${movie.rating}/10</p>
+            </div>
+            </a>
+        `;
+
+        // Menambahkan elemen ke daftar film
+        movieList.appendChild(movieElement);
+    });
+}
+
+// Panggil fungsi untuk menampilkan film ketika halaman dimuat
+window.onload = displayMovies;
+    </script>
+</body>
+</html>
